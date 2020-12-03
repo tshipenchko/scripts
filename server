@@ -1,5 +1,0 @@
-Hot to use? $file_name is the name of file that you want to use
-    chmod +x $file_name
-    ./$filename
-    OR
-    sudo ./$filename
