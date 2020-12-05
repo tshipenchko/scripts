@@ -16,8 +16,8 @@ curl<br/>
 ```
 bash <(curl -Ls $RAW_file_link)
 ```
-If you have errors, try:
--Is link for file is RAW and correct?
--try `apt update`?
--Is git, wget or curl installed?
--Use `sodu su`?
+If you have errors, try:</br>
+-Is link for file is RAW and correct?</br>
+-try `apt update`?</br>
+-Is git, wget or curl installed?</br>
+-Use `sudo su`?</br>
