@@ -17,14 +17,22 @@ v2-ui start
 
 #cert
 echo ""
-echo "enter your domain wer.exp.com"
+echo "enter your domain wer.exp.com OR set empty (enter)"
 echo ""
 read -r domain
+if [ -z "$domain" ]; then
+sudo apt-get install snapd -y
 sudo snap install core; sudo snap refresh core
 sudo snap install --classic certbot
 sudo ln -s /snap/bin/certbot /usr/bin/certbot
 echo -e "${GREEN}GETTING CERTIFICATE${NORMAL}"
-sudo /snap/bin/certbot certonly --standalone --preferred-challenges http --agree-tos --email someadress@hui.com -d $domain
+sudo /snap/bin/certbot certonly --standalone --preferred-challenges http --agree-tos --email someadress@hui.com -d "$domain"
 echo ""
 echo "open http://${domain}:65432"
 echo ""
+yourip=`curl ifconfig.co`
+else
+echo ""
+echo "open http://${yourip}:65432"
+echo ""
+fi
