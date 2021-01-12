@@ -9,7 +9,7 @@ fi
 #open ports
 echo "Do you want to open all ports? (y/n)"
 read -r open_port
-case open_port in
+case $open_port in
 [yY] | [yY][Ee][Ss] )
 	sudo iptables -A INPUT -p udp -m udp --dport 1:65535 -j ACCEPT
 	sudo iptables -A INPUT -p tcp -m tcp --dport 1:65535 -j ACCEPT
