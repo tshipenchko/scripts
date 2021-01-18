@@ -41,9 +41,9 @@ v2-ui start
 
 #info
 yourip=`wget -qO - icanhazip.com`
-echo "go to http://$yourip:65432 and set it up" | tee /root/v2rayOpenSSL.info
-echo "admin admin is login and password" | tee /root/v2rayOpenSSL.info
-echo "certificate file path: /etc/ssl/v2ray/cert.pub" | tee /root/v2rayOpenSSL.info
-echo "key file path: /etc/ssl/v2ray/priv.key" | tee /root/v2rayOpenSSL.info
+echo "go to http://$yourip:65432 and set it up" | tee -a /root/v2rayOpenSSL.info
+echo "admin admin is login and password" | tee -a /root/v2rayOpenSSL.info
+echo "certificate file path: /etc/ssl/v2ray/cert.pub" | tee -a /root/v2rayOpenSSL.info
+echo "key file path: /etc/ssl/v2ray/priv.key" | tee -a /root/v2rayOpenSSL.info
 echo ""
 echo "to see that again: cat /root/v2rayOpenSSL.info"
