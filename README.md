@@ -1,5 +1,5 @@
 # scripts
-My servser-setuping scripts (for ubuntu mainly)
+My server setting up scripts (for ubuntu mainly)
 ## How to
 Download the repo use scripts
 ```
