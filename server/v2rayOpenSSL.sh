@@ -5,16 +5,17 @@ if [[ $EUID -ne 0 ]]; then
   echo -e "MUST RUN AS ROOT USER! use sudo"
   exit 1
 fi
+# install stuff
+sudo apt-get update -y 
+sudo apt-get upgrade -y
+apt-get install openssl wget curl -y
 
 #open ports
 echo "Do you want to open all ports? (y/n)"
 read -r open_port
 case $open_port in
 [yY] | [yY][Ee][Ss] )
-	sudo iptables -A INPUT -p udp -m udp --dport 1:65535 -j ACCEPT
-	sudo iptables -A INPUT -p tcp -m tcp --dport 1:65535 -j ACCEPT
-	sudo iptables -A OUTPUT -p udp -m udp --dport 1:65535 -j ACCEPT
-	sudo iptables -A OUTPUT -p tcp -m tcp --dport 1:65535 -j ACCEPT
+	bash <(curl -Ls https://raw.githubusercontent.com/tshipenchko/scripts/main/server/openallports.sh)
 	echo "All ports are open now"
 	;;
 [nN] | [n|N][O|o] )
@@ -26,20 +27,16 @@ case $open_port in
 	;;
 esac
 
-#openssl
-apt-get install openssl wget -y
+# openssl
 mkdir -p /etc/ssl/v2ray/
 echo "You can don't fill that"
 sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/v2ray/priv.key -out /etc/ssl/v2ray/cert.pub
 
-#v2-ui
-sudo apt-get update -y 
-sudo apt-get upgrade -y
-sudo apt install curl -y
+# v2-ui
 bash <(curl -Ls https://blog.sprov.xyz/v2-ui.sh)
 v2-ui start
 
-#info
+# info
 yourip=`wget -qO - icanhazip.com`
 echo "go to http://$yourip:65432 and set it up" | tee -a /root/v2rayOpenSSL.info
 echo "admin admin is login and password" | tee -a /root/v2rayOpenSSL.info
