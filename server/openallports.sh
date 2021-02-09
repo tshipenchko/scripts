@@ -8,6 +8,8 @@ fi
 #open ports
 sudo apt update && sudo apt upgrade -y
 sudo apt install firewalld -y
+sudo systemctl enable firewalld
+sudo systemctl restart firewalld
 sudo firewall-cmd --zone=public --permanent --add-port=1-65535/udp
 sudo firewall-cmd --zone=public --permanent --add-port=1-65535/tcp
 sudo firewall-cmd --reload
