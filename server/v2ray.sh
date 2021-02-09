@@ -1,21 +1,45 @@
 #!/bin/bash 
 GREEN='\033[0;32m'      #  ${GREEN}
 NORMAL='\033[0m'      #  ${NORMAL}
-#v2-ui
+
+# root?
+if [[ $EUID -ne 0 ]]; then
+  echo -e "MUST RUN AS ROOT USER! use sudo"
+  exit 1
+fi
+
+# open ports
+echo "Do you want to open all ports? (y/n)"
+read -r open_port
+case $open_port in
+[yY] | [yY][Ee][Ss] )
+	bash <(curl -Ls https://raw.githubusercontent.com/tshipenchko/scripts/main/server/openallports.sh)
+	echo "All ports are open now"
+	;;
+[nN] | [n|N][O|o] )
+	echo "Okey, ports are closed"
+	;;
+*)
+	echo "Port won't be open (enter to continue)"
+	read -r lol
+	;;
+esac
+
+# install stuff
 sudo apt-get update -y 
 sudo apt-get upgrade -y
-sudo apt-get install curl -y
+apt-get install openssl wget curl -y
 
-#port open 80?
+# port open 80?
 echo -e "${GREEN}DON'T FORGET OPEN & FREE 80 PORT${NORMAL}"
 echo "[ENTER]"
 read -r lol
 
-#v2-ui
+# v2-ui
 bash <(curl -Ls https://blog.sprov.xyz/v2-ui.sh)
 v2-ui start
 
-#cert
+# cert
 echo ""
 echo "enter your domain wer.exp.com OR set empty (enter)"
 echo ""
