@@ -1,3 +1,12 @@
+# MOVED TO GITLAB
+# https://gitlab.com/tshipenchko/scripts/
+
+
+
+
+
+
+
 # scripts
 My server setting up scripts (for ubuntu mainly)
 ## How to
